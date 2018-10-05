@@ -3,9 +3,13 @@ import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
+import 'semantic-ui-css/semantic.min.css';
+
 import rootReducer from './redux/rootReducer';
 
 import App from './containers/App';
+
+import './styles.scss';
 
 const store = createStore(
     rootReducer,

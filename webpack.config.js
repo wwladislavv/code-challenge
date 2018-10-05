@@ -17,35 +17,44 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader'],
-      },
-      {
+        use: ['style-loader', 'css-loader']
+    },
+    {
         test: /\.scss$/,
         use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoaders: 2,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
+            'style-loader',
+            {
+                loader: 'css-loader',
+                options: {
+                    sourceMap: true
+                }
             },
-          },
-          'sass-loader',
-        ]
-      },
+            {
+                loader: 'sass-loader',
+                options: {
+                    sourceMap: true
+                }
+            }]
+    },
       {
         exclude: /node_modules|packages/,
         test: /\.js$/,
         use: 'babel-loader',
       },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000'
+      },
     ],
   },
   resolve: {
-    extensions: ['.js', 'jsx'],
+    extensions: ['.js', '.jsx', '.css', '.scss']
   },
-  plugins: [new HtmlWebpackPlugin(), new webpack.NamedModulesPlugin(), new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),

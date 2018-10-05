@@ -6,18 +6,21 @@ import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 
-import routes from '../routes';
+import TopNav from '../components/TopNav/TopNav';
 
-// import styles from './App.scss';
+import routes from '../routes';
 
 class App extends React.Component {
 
   renderRoutes = () => {
     return (
       <Router>
-        <Container>
+        <div className='appWrapper'>
+          <TopNav />
+          <Container>
             {routes}
-        </Container>
+          </Container>
+        </div>
       </Router>
     );
   }
